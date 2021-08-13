@@ -1,6 +1,5 @@
 #include <boost/python.hpp>
 #include "boost/python/extract.hpp"
-#include "boost/python/numeric.hpp"
 #include <boost/numpy.hpp>
 #include <iostream>
 
@@ -38,11 +37,11 @@ void uint2uchar(unsigned int in, unsigned char* out){
 boost::python::tuple render_mesh(boost::python::list proj_matrices,
                                  unsigned int im_height,
                                  unsigned int im_width,
-                                 boost::python::numeric::array verts,
-                                 boost::python::numeric::array tris,
-                                 boost::python::numeric::array norms,
-                                 boost::python::numeric::array mat_props,
-                                 boost::python::numeric::array light_props,
+                                 boost::numpy::ndarray verts,
+                                 boost::numpy::ndarray tris,
+                                 boost::numpy::ndarray norms,
+                                 boost::numpy::ndarray mat_props,
+                                 boost::numpy::ndarray light_props,
 				 bool enable_lighting = false,
                                  bool debug = false)
 {
@@ -356,10 +355,10 @@ boost::python::tuple render_mesh(boost::python::list proj_matrices,
 }
 
 // Test function for multiplying an array by a scalar
-boost::python::list mul_array(boost::python::numeric::array data, int x)
+boost::python::list mul_array(boost::numpy::ndarray data, int x)
 {
   // Access a built-in type (an array)
-  boost::python::numeric::array a = data;
+  boost::numpy::ndarray a = data;
   long int bufLen;
   void const *buffer;
   bool isReadBuffer = !PyObject_AsReadBuffer(a.ptr(), &buffer, &bufLen);
@@ -388,7 +387,7 @@ boost::python::list mul_array(boost::python::numeric::array data, int x)
 BOOST_PYTHON_MODULE(meshrender) {
   Py_Initialize();
   boost::numpy::initialize();
-  boost::python::numeric::array::set_module_and_type("numpy", "ndarray");
+  // boost::numpy::ndarray::set_module_and_type("numpy", "ndarray");
 
   def("mul_array", &mul_array);
   def("render_mesh", &render_mesh);
