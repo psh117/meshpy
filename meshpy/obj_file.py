@@ -3,7 +3,7 @@ File for loading and saving meshes from .OBJ files
 Author: Jeff Mahler
 """
 import os
-import mesh
+from meshpy import mesh
 
 class ObjFile(object):
     """

@@ -3,7 +3,7 @@ Encapsulates mesh for grasping operations
 Authors: Jeff Mahler and Matt Matl
 """
 import math
-import Queue
+import queue
 import os
 import random
 from subprocess import Popen
@@ -16,8 +16,8 @@ import trimesh as tm
 
 from autolab_core import RigidTransform, Point, Direction, PointCloud, NormalCloud
 
-import obj_file
-import stable_pose as sp
+from meshpy.obj_file import ObjFile
+import meshpy.stable_pose as sp
 
 class Mesh3D(object):
     """A triangular mesh for a three-dimensional shape representation.
@@ -694,7 +694,7 @@ class Mesh3D(object):
         old_triangles = self.triangles.tolist()
 
         new_triangles = []
-        tri_queue = Queue.Queue()
+        tri_queue = queue.Queue()
 
         for j, triangle in enumerate(old_triangles):
             tri_queue.put((j, triangle))
@@ -1198,7 +1198,7 @@ class Mesh3D(object):
             raise ValueError('Unable to open file %s. It may not exist or meshlab may not be installed.' %(filename))
 
         # Read mesh from obj file
-        return obj_file.ObjFile(obj_filename).read()
+        return ObjFile(obj_filename).read()
 
     @property
     def trimesh(self):

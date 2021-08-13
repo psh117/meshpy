@@ -17,7 +17,7 @@ except:
 
 from autolab_core import Point, RigidTransform
 from autolab_core.utils import sph2cart, cart2sph
-from perception import CameraIntrinsics, BinaryImage, ColorImage, DepthImage, RgbdImage, ObjectRender
+from autolab_core import CameraIntrinsics, BinaryImage, ColorImage, DepthImage, RgbdImage, ObjectRender
 from meshpy import MaterialProperties, LightingProperties, RenderMode
 
 class ViewsphereDiscretizer(object):
@@ -328,7 +328,7 @@ class PlanarWorksurfaceDiscretizer(object):
                                 camera_y_par_obj = np.cross(camera_z_obj, camera_x_par_obj)
                                 camera_y_par_obj = camera_y_par_obj / np.linalg.norm(camera_y_par_obj)
                                 if camera_y_par_obj[2] > 0:
-                                    print 'Flipping', num_poses
+                                    print('Flipping', num_poses)
                                     camera_x_par_obj = -camera_x_par_obj
                                     camera_y_par_obj = np.cross(camera_z_obj, camera_x_par_obj)
                                     camera_y_par_obj = camera_y_par_obj / np.linalg.norm(camera_y_par_obj)

@@ -13,7 +13,7 @@ import time
 
 import autolab_core.utils as utils
 from autolab_core import NormalCloud, PointCloud, RigidTransform
-from perception import CameraIntrinsics, ObjectRender, RenderMode
+from autolab_core import CameraIntrinsics, ObjectRender, RenderMode
 from meshpy import MaterialProperties, LightingProperties, ObjFile, VirtualCamera, ViewsphereDiscretizer, SceneObject
 
 from visualization import Visualizer2D as vis
